@@ -3,11 +3,12 @@
 
 This is an implementation written in Node
 
+NOTE: The library does **not** automatically send a "refresh" packet to cause neighbors to announce themselves, but the function is implemented and available in the API as `refresh()`.
 
 ### Usage Example
 ```
-var NodeMndp = require('node-mndp');
-var discovery = new NodeMndp({
+var mndp = require('node-mndp').NodeMndp;
+var discovery = new mndp({
     port: 5678
 });
 
@@ -20,8 +21,8 @@ discovery.start();
 
 Ipv6 Example
 ```
-var NodeMndp = require('node-mndp');
-var discovery = new NodeMndp({
+var mndp = require('node-mndp').NodeMndp;
+var discovery = new mndp({
     port: 5678,
     host: "::",
     version: "udp6"
@@ -35,8 +36,8 @@ discovery.start();
 ```
 ### API
 ```
-var NodeMndp = require('node-mndp');
-var discovery = new NodeMndp({
+var mndp = require('node-mndp').NodeMndp;
+var discovery = new mndp({
     port: 5678
 });
 ```
@@ -54,6 +55,8 @@ options {
 
 #### discovery.stop() -> void
 
+#### discovery.refresh() -> void
+
 #### Event: 'deviceFound'
 ```
 
@@ -63,6 +66,12 @@ Output:
     "macAddress":"aabbccddeeff",
     "identity":"Mikrotik",
     "version":"6.41.2 (stable)"
+    "platform":"MikroTik",
+    "uptime":12190,
+    "softwareId":"8C0S-DDXE",
+    "board":"RB2011UiAS-2HnD",
+    "unpack":0,
+    "interfaceName":"LAN_Bridge/ether2"
 }
 
 ```
