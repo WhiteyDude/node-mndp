@@ -5,5 +5,8 @@ export interface Device {
     identity: string;
     platform: string;
     uptime: number;
+    softwareId: string;
     board: string;
+    unpack: number;
+    interfaceName: string;
 }

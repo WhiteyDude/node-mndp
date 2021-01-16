@@ -32,7 +32,10 @@ export class Discovery {
             version: '',
             platform: '',
             uptime: 0,
-            board: ''
+            softwareId: '',
+            board: '',
+            unpack: 0,
+            interfaceName: ''
         };
 
         /**
@@ -67,8 +70,17 @@ export class Discovery {
                 case 10: // uptime
                     device.uptime = Buffer.from(this.msg.slice(offset, offset + attrLength)).readUInt32LE(0);
                     break;
+                case 11: // software id
+                    device.softwareId = bin2String(this.msg.subarray(offset, offset + attrLength));
+                    break;
                 case 12: // board
                     device.board = bin2String(this.msg.subarray(offset, offset + attrLength));
+                    break;
+                case 14: // unpack (discovery packet compresson type) (none|simple|uncompressed-headers|uncompressed-all)
+                    device.unpack = Buffer.from(this.msg.slice(offset, offset + attrLength)).readInt8(0);
+                    break;
+                case 16: // interface name
+                    device.interfaceName = bin2String(this.msg.subarray(offset, offset + attrLength));
                     break;
                 default: // unknown type
                     console.debug('unknown mndp message type', attrType);
