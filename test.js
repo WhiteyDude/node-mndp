@@ -11,6 +11,7 @@ test.on('deviceFound', (output) => {
 
 test.on('started', (output) => {
     console.log(output);
+    test.refresh();
 });
 
 test.on('error', (output) => {
