@@ -79,9 +79,14 @@ export class Discovery {
                 case 14: // unpack (discovery packet compresson type) (none|simple|uncompressed-headers|uncompressed-all)
                     device.unpack = Buffer.from(this.msg.slice(offset, offset + attrLength)).readInt8(0);
                     break;
+		case 15: // IPv6, as per https://github.com/xmegz/MndpTray/blob/master/MndpTray/MndpTray.Protocol.Shared/MndpMessage.cs#L20
+		    break;
                 case 16: // interface name
                     device.interfaceName = bin2String(this.msg.subarray(offset, offset + attrLength));
+		    // Not handling this for now
                     break;
+		case 17: // Unknown
+		    break;
                 default: // unknown type
                     console.debug('unknown mndp message type', attrType);
                     break;

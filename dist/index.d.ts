@@ -21,7 +21,7 @@ export declare class NodeMndp extends events.EventEmitter {
     /**
      * Initalize Listeners
      */
-    private registerListeners();
+    private registerListeners;
     /**
      * Instigate responses from neighbors.
      *

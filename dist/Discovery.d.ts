@@ -12,5 +12,5 @@ export declare class Discovery {
     /**
      * Format the buffer array
      */
-    private format(callback);
+    private format;
 }
